@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Department from './Department';
 
 class DepartmentList extends Component {
   render() {
-    let departments = [0, 1];
+    const { departments } = this.props;
     
     const departmentItems = departments.map((department) => {
-        return <Department key={department} />
+        return <Department department={department} key={department.id} />
     });
 
     return (
@@ -17,4 +19,12 @@ class DepartmentList extends Component {
   }
 }
 
-export default DepartmentList;
+DepartmentList.propTypes = {
+    departments: PropTypes.array.isRequired
+};
+
+const mapStateToProps = ({ departments }) => ({
+    departments: departments
+});
+
+export default connect(mapStateToProps)(DepartmentList);

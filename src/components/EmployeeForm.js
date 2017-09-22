@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class EmployeeForm extends Component {
   render() {
+    const { departments } = this.props;
     return (
         <div>
             <form name="employee-form">
@@ -16,10 +18,11 @@ class EmployeeForm extends Component {
                 <div className="form-group">
                     <label className="pull-left" htmlFor="department">Department:</label>
                     <select className="form-control" id="department">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
+                    { 
+                        departments.map((department) => {
+                            return <option key={department.id} value={department.id}>{department.name}</option>
+                        })
+                    }
                     </select>
               </div>
             </form>
@@ -28,4 +31,8 @@ class EmployeeForm extends Component {
   }
 }
 
-export default EmployeeForm;
+const mapStateToProps = ({ departments }) => ({
+    departments: departments
+  });
+  
+export default connect(mapStateToProps)(EmployeeForm);
