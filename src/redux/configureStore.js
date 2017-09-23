@@ -1,14 +1,14 @@
 import { createStore, applyMiddleware } from 'redux';
 import { routerMiddleware } from 'react-router-redux'
-import createHistory from 'history/createBrowserHistory'
+import { browserHistory } from 'react-router';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers';
 
-export const history = createHistory();
-const middleware = routerMiddleware(history);
+const middleware = routerMiddleware(browserHistory)
 
 const store = createStore(
     rootReducer,
-    applyMiddleware(middleware)
+    composeWithDevTools(applyMiddleware(middleware))
 );
 
 export default store;

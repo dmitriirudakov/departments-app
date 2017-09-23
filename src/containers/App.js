@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import './App.css';
-import DepartmentsPage from './DepartmentsPage';
+import DepartmentList from '../components/DepartmentList';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <DepartmentsPage />
+        <div className="container">
+          <div className="col-xs-3">
+            <DepartmentList></DepartmentList>
+          </div>
+          <div className="col-xs-9">
+            { this.props.children }          
+          </div>
+       </div>
       </div>
     );
   }

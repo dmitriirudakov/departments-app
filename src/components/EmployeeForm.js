@@ -33,6 +33,6 @@ class EmployeeForm extends Component {
 
 const mapStateToProps = ({ departments }) => ({
     departments: departments
-  });
+});
   
 export default connect(mapStateToProps)(EmployeeForm);

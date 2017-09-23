@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 
 class Employee extends Component {
     render() {    
-        const { employee } = this.props;
+        const { employee, onEmployeeClick } = this.props;
         return (
-            <div>
+            <div onClick={() => onEmployeeClick(employee.id)}>
                 <span>{employee.firstName} {employee.lastName}</span>
             </div>
         );
@@ -26,4 +27,12 @@ const mapStateToProps = ({ departments }, { employee } ) => ({
     department: departments.find(department => department.id === employee.departmentId)
 });
 
-export default connect(mapStateToProps)(Employee);
+const mapDispatchToProps = dispatch => {
+    return {
+        onEmployeeClick: id => {
+            dispatch(push(`/employee/${id}`))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Employee);

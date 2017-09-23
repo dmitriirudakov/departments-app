@@ -5,7 +5,7 @@ import departments from './departmentsReducer';
 
 // Combines all reducers to a single reducer function
 const rootReducer = combineReducers({
-    router: routerReducer,
+    routing: routerReducer,
     employees, 
     departments
 });
