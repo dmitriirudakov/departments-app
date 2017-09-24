@@ -5,14 +5,14 @@ import { Button, ButtonGroup } from 'react-bootstrap';
 
 class Header extends Component {
   render() {
-    const { onAddEmployeeClick, onAddDepartmentClick } = this.props;
+    const { onNewEmployeeClick, onNewDepartmentClick } = this.props;
     
     return (
         <nav className="navbar navbar-default">
             <div className="container-fluid">
                 <ButtonGroup>
-                    <Button className="navbar-btn" bsStyle="primary" onClick={() => onAddDepartmentClick()}>New Department</Button>
-                    <Button className="navbar-btn" bsStyle="primary" onClick={() => onAddEmployeeClick()}>New Employee</Button>
+                    <Button className="navbar-btn" bsStyle="primary" onClick={() => onNewDepartmentClick()}>New Department</Button>
+                    <Button className="navbar-btn" bsStyle="primary" onClick={() => onNewEmployeeClick()}>New Employee</Button>
                 </ButtonGroup>
             </div>
         </nav>
@@ -22,10 +22,10 @@ class Header extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddDepartmentClick: id => {
+        onNewDepartmentClick: id => {
             dispatch(push(`/department`))
         },
-        onAddEmployeeClick: id => {
+        onNewEmployeeClick: id => {
             dispatch(push(`/employee`))
         }   
     }
