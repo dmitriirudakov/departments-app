@@ -7,7 +7,7 @@ class EmployeeList extends Component {
         const { employees } = this.props;
 
         const employeeItems = employees.map((employee) => {
-            return <li className="list-group-item" key={employee.id}>
+            return <li role="button" className="list-group-item" key={employee.id}>
                         <Employee employee={employee} key={employee.id} />
                     </li>
         });

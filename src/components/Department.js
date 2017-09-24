@@ -9,8 +9,8 @@ class Department extends Component {
         const { employees, department, onDepartmentClick } = this.props;
         return (
             <div>
-                <div className="panel panel-default">
-                    <div className="panel-heading" 
+                <div className="panel panel-primary">
+                    <div role="button" className="panel-heading" 
                         onClick={() => onDepartmentClick(department.id)}>
                         { department.name }
                     </div>

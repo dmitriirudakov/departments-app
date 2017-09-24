@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap';  
+import { Button, ButtonGroup, ButtonToolbar } from 'react-bootstrap';  
 
 class DepartmentForm extends Component {
 
@@ -15,12 +15,14 @@ class DepartmentForm extends Component {
         title: 'Create Department',
         submitBtnText: 'Create',
         onSubmit: this.onFormSubmit,
+        removable: false,
         department: null
       },
       editModeProps: {
         title: 'Edit Department',
-        submitBtnText: 'Update',
+        submitBtnText: 'Save',
         onSubmit: this.onFormSubmit,
+        removable: true,
         department: null
       },
       departmentModel: { name: '', id: '' },
@@ -75,7 +77,15 @@ class DepartmentForm extends Component {
                     <input type="text" onChange={this.onNameChange} value={formState.department.name} className="form-control" id="department-name" aria-describedby="department-name" />
                   </div>
                 </div>
-                <Button bsStyle="success" onClick={() => formState.onSubmit()}>{formState.submitBtnText}</Button>
+                <ButtonToolbar>
+                  <ButtonGroup>
+                    <Button bsStyle="success" onClick={() => formState.onSubmit()}>{formState.submitBtnText}</Button>
+                  </ButtonGroup>
+                  { formState.removable && 
+                  <ButtonGroup>
+                    <Button bsStyle="danger" onClick={() => void(0)}>Delete</Button>
+                  </ButtonGroup> }
+               </ButtonToolbar>
               </form> 
             </div>
           }
