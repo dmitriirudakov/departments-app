@@ -13,7 +13,7 @@ import EmployeeForm from './components/EmployeeForm';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import $ from 'jquery';
-window.jQuery = window.$ = $;
+window.jQuery = window.jQuery = $;
 require('bootstrap');
 
 const history = syncHistoryWithStore(browserHistory, store);
