@@ -1,20 +1,22 @@
 import initialState from './initialState';
 
-const SET_DEPARTMENT_LIST = 'DEPARTMENT::SET_DEPARTMENT_LIST';
-const ADD_DEPARTMENT = 'DEPARTMENT::ADD_DEPARTMENT';
-const REMOVE_DEPARTMENT = 'DEPARTMENT::REMOVE_DEPARTMENT';
-const UPDATE_DEPARTMENT = 'DEPARTMENT::UPDATE_DEPARTMENT';
+export const DEPARTMENTS_FETCH_REQUESTED = 'DEPARTMENTS::FETCH_REQUESTED';
+export const DEPARTMENTS_FETCH_SUCCEEDED = 'DEPARTMENTS::FETCH_SUCCEEDED';
+export const DEPARTMENTS_FETCH_FAILED = 'DEPARTMENTS::FETCH_FAILED';
+export const DEPARTMENT_ADD_SUCCEEDED = 'DEPARTMENT::ADD_SUCCEEDED';
+export const DEPARTMENT_REMOVE_SUCCEEDED = 'DEPARTMENT::REMOVE_SUCCEEDED';
+export const DEPARTMENT_UPDATE_SUCCEEDED = 'DEPARTMENT::UPDATE_SUCCEEDED';
 
 export default (state = initialState.departments, action = {}) => {
     const { type, payload } = action;
     switch (type) {
-      case SET_DEPARTMENT_LIST:
+      case DEPARTMENTS_FETCH_SUCCEEDED:
         return [ ...payload ];
-      case ADD_DEPARTMENT:
+      case DEPARTMENT_ADD_SUCCEEDED:
         return [ ...state, payload ];
-      case REMOVE_DEPARTMENT:
+      case DEPARTMENT_REMOVE_SUCCEEDED:
         return state.filter(item => item.id !== payload.id);
-      case UPDATE_DEPARTMENT:
+      case DEPARTMENT_UPDATE_SUCCEEDED:
         return state.map((item) => {
             if(item.id !== payload.id) {
                 return item;

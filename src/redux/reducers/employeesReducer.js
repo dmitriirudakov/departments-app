@@ -1,21 +1,23 @@
 import initialState from './initialState';
 
-const SET_EMPLOYEE_LIST = 'EMPLOYEE::SET_EMPLOYEE_LIST'; 
-const ADD_EMPLOYEE = 'EMPLOYEE::ADD_EMPLOYEE';
-const REMOVE_EMPLOYEE = 'EMPLOYEE::REMOVE_EMPLOYEE';
-const UPDATE_EMPLOYEE = 'EMPLOYEE::UPDATE_EMPLOYEE';
-const REMOVE_EMPLOYEE_FROM_DEPARTMENT = 'EMPLOYEE::REMOVE_EMPLOYEE_FROM_DEPARTMENT';
+export const EMPLOYEES_FETCH_REQUESTED = 'EMPLOYEES::FETCH_REQUESTED';
+export const EMPLOYEES_FETCH_SUCCEEDED = 'EMPLOYEES::FETCH_SUCCEEDED';
+export const EMPLOYEES_FETCH_FAILED = 'EMPLOYEE::FETCH_FAILDER';
+export const EMPLOYEE_ADD_SUCCEEDED = 'EMPLOYEE::ADD_SUCCEEDED';
+export const EMPLOYEE_REMOVE_SUCCEEDED = 'EMPLOYEE::REMOVE_SUCCEEDED';
+export const EMPLOYEE_UPDATE_SUCCEEDED = 'EMPLOYEE::UPDATE_SUCCEEDED';
+export const EMPLOYEE_REMOVE_FROM_DEPARTMENT = 'EMPLOYEE::REMOVE_FROM_DEPARTMENT';
 
 export default (state = initialState.employees, action = {}) => {
     const { type, payload } = action;
     switch (type) {
-      case SET_EMPLOYEE_LIST:
+      case EMPLOYEES_FETCH_SUCCEEDED:
         return [ ...payload ];
-      case ADD_EMPLOYEE:
+      case EMPLOYEE_ADD_SUCCEEDED:
         return [ ...state, payload ];
-      case REMOVE_EMPLOYEE:
+      case EMPLOYEE_REMOVE_SUCCEEDED:
         return state.filter(item => item.id !== payload.id);
-      case UPDATE_EMPLOYEE:
+      case EMPLOYEE_UPDATE_SUCCEEDED:
         return state.map((item) => {
           if(item.id !== payload.id) {
               return item;
@@ -25,7 +27,7 @@ export default (state = initialState.employees, action = {}) => {
               ...payload
           };    
       });
-      case REMOVE_EMPLOYEE_FROM_DEPARTMENT:
+      case EMPLOYEE_REMOVE_FROM_DEPARTMENT:
         return state.map((item) => {
           if (item.id !== payload.id) {
               return item;

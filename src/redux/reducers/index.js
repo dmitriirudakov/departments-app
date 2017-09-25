@@ -3,7 +3,6 @@ import { routerReducer } from 'react-router-redux'
 import employees from './employeesReducer';
 import departments from './departmentsReducer';
 
-// Combines all reducers to a single reducer function
 const rootReducer = combineReducers({
     routing: routerReducer,
     employees, 

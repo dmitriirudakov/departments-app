@@ -11,8 +11,8 @@ class Header extends Component {
         <nav className="navbar navbar-default">
             <div className="container-fluid">
                 <ButtonGroup>
-                    <Button className="navbar-btn" bsStyle="primary" onClick={() => onNewDepartmentClick()}>New Department</Button>
-                    <Button className="navbar-btn" bsStyle="primary" onClick={() => onNewEmployeeClick()}>New Employee</Button>
+                    <Button className="navbar-btn" bsStyle="success" onClick={() => onNewDepartmentClick()}>New Department</Button>
+                    <Button className="navbar-btn" bsStyle="success" onClick={() => onNewEmployeeClick()}>New Employee</Button>
                 </ButtonGroup>
             </div>
         </nav>
