@@ -1,11 +1,11 @@
 
 import { call, put, takeLatest } from 'redux-saga/effects'
-import api from '../api/departmentApi';
+import api from '../../api/departmentApi';
 import { 
     DEPARTMENTS_FETCH_SUCCEEDED, 
     DEPARTMENTS_FETCH_FAILED, 
     DEPARTMENTS_FETCH_REQUESTED 
-} from '../redux/reducers/departmentsReducer';
+} from '../../redux/reducers/departmentsReducer';
 
 function* fetchDepartments(action) {
    try {

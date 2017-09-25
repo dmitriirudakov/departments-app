@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, ButtonGroup, ButtonToolbar } from 'react-bootstrap';  
+import { 
+    EMPLOYEE_CREATE_REQUESTED, 
+    EMPLOYEE_DELETE_REQUESTED, 
+    EMPLOYEE_UPDATE_REQUESTED 
+} from '../redux/reducers/employeesReducer';
 
 class EmployeeForm extends Component {
     constructor(props) {
@@ -31,7 +36,8 @@ class EmployeeForm extends Component {
             removable: true,
             employee: null
             },
-            employeeModel: { firstName: '', lastName: '', departmentId: '', id: '' },
+            employeeModel: { firstName: '', lastName: '', departmentId: '', id: '5' },
+            // TODO: generate id as uuid on backend
         }
         state.formState = this.getFormState(props, state);
         
@@ -78,14 +84,26 @@ class EmployeeForm extends Component {
 
     createEmployee() {
         console.log('create employee', this.state.formState.employee);
+        this.props.dispatch({
+            type: EMPLOYEE_CREATE_REQUESTED, 
+            payload: this.state.formState.employee
+        });
     }
 
     updateEmployee() {
         console.log('update employee', this.state.formState.employee);
+        this.props.dispatch({
+            type: EMPLOYEE_UPDATE_REQUESTED, 
+            payload: this.state.formState.employee
+        });
     }
 
     deleteEmployee() {
         console.log('delete employee', this.state.formState.employee);
+        this.props.dispatch({
+            type: EMPLOYEE_DELETE_REQUESTED, 
+            payload: this.state.formState.employee
+        });
     }
 
     render() {

@@ -7,21 +7,24 @@ class DepartmentForm extends Component {
   constructor(props) {
     super(props);
     this.onNameChange = this.onNameChange.bind(this);
-    this.onFormSubmit = this.onFormSubmit.bind(this);
     this.getFormState = this.getFormState.bind(this);
+
+    this.createDepartment = this.createDepartment.bind(this);
+    this.updateDepartment = this.updateDepartment.bind(this);
+    this.deleteDepartment = this.deleteDepartment.bind(this);
 
     const state = {
       createModeProps: {
         title: 'Create Department',
         submitBtnText: 'Create',
-        onSubmit: this.onFormSubmit,
+        onSubmit: this.createDepartment,
         removable: false,
         department: null
       },
       editModeProps: {
         title: 'Edit Department',
         submitBtnText: 'Save',
-        onSubmit: this.onFormSubmit,
+        onSubmit: this.updateDepartment,
         removable: true,
         department: null
       },
@@ -34,6 +37,18 @@ class DepartmentForm extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ formState: this.getFormState(nextProps, this.state)})
+  }
+
+  createDepartment() {
+    console.log('createDepartment', this.state.formState.department);
+  }
+
+  updateDepartment() {
+    console.log('updateDepartment', this.state.formState.department);
+  }
+  
+  deleteDepartment() {
+    console.log('deleteDepartment', this.state.formState.department);
   }
 
   getFormState(props, state) {
@@ -58,12 +73,10 @@ class DepartmentForm extends Component {
     this.setState({formState});
   }
 
-  onFormSubmit() {
-  }
-
   render() {
     const { departmentId } = this.props;
     const { formState } = this.state; 
+    const { deleteDepartment } = this;
 
     return (
         <div>
@@ -83,7 +96,7 @@ class DepartmentForm extends Component {
                   </ButtonGroup>
                   { formState.removable && 
                   <ButtonGroup>
-                    <Button bsStyle="danger" onClick={() => void(0)}>Delete</Button>
+                    <Button bsStyle="danger" onClick={() => deleteDepartment()}>Delete</Button>
                   </ButtonGroup> }
                </ButtonToolbar>
               </form> 
