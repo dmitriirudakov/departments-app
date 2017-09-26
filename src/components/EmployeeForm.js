@@ -22,19 +22,19 @@ class EmployeeForm extends Component {
         this.getFormState = this.getFormState.bind(this);
 
         const state = {
-            createModeProps: {
-            title: 'Create Employee',
-            submitBtnText: 'Create',
-            onSubmit: this.createEmployee,
-            removable: false,
-            employee: null
+                createModeProps: {
+                title: 'Create Employee',
+                submitBtnText: 'Create',
+                onSubmit: this.createEmployee,
+                removable: false,
+                employee: null
             },
-            editModeProps: {
-            title: 'Edit Employee',
-            submitBtnText: 'Save',
-            onSubmit: this.updateEmployee,
-            removable: true,
-            employee: null
+                editModeProps: {
+                title: 'Edit Employee',
+                submitBtnText: 'Save',
+                onSubmit: this.updateEmployee,
+                removable: true,
+                employee: null
             },
             employeeModel: { firstName: '', lastName: '', departmentId: '', id: '' },
         }
@@ -81,16 +81,16 @@ class EmployeeForm extends Component {
         this.setState({formState});
     }
 
-    createEmployee() {
-        console.log('create employee', this.state.formState.employee);
+    createEmployee(event) {
+        event && event.preventDefault();
         this.props.dispatch({
             type: EMPLOYEE_CREATE_REQUESTED, 
             payload: this.state.formState.employee
         });
     }
 
-    updateEmployee() {
-        console.log('update employee', this.state.formState.employee);
+    updateEmployee(event) {
+        event && event.preventDefault();
         this.props.dispatch({
             type: EMPLOYEE_UPDATE_REQUESTED, 
             payload: this.state.formState.employee
@@ -98,7 +98,6 @@ class EmployeeForm extends Component {
     }
 
     deleteEmployee() {
-        console.log('delete employee', this.state.formState.employee);
         this.props.dispatch({
             type: EMPLOYEE_DELETE_REQUESTED, 
             payload: this.state.formState.employee
@@ -115,7 +114,7 @@ class EmployeeForm extends Component {
                 { formState &&
                 <div>
                     <h3>{ formState.title }</h3>
-                    <form name="employee-form">
+                    <form name="employee-form" onSubmit={formState.onSubmit}>
                         <div className="form-group">
                             <label className="pull-left" htmlFor="first-name">First Name:</label>
                             <input onChange={this.onFirstNameChange} value={formState.employee.firstName} type="text" className="form-control" id="first-name" aria-describedby="first-name" />
@@ -137,7 +136,7 @@ class EmployeeForm extends Component {
                         </div>
                         <ButtonToolbar>
                             <ButtonGroup>
-                                <Button bsStyle="success" onClick={() => formState.onSubmit()}>{formState.submitBtnText}</Button>
+                                <Button bsStyle="success" type="submit">{formState.submitBtnText}</Button>
                             </ButtonGroup>
                             { formState.removable && 
                             <ButtonGroup>
@@ -149,7 +148,7 @@ class EmployeeForm extends Component {
                 }
                 { !formState &&
                     <h3>
-                    Employee with id '{employeeId}' not found!
+                        Employee with id '{employeeId}' not found!
                     </h3>
                 }
             </div>
@@ -157,10 +156,15 @@ class EmployeeForm extends Component {
     }
 }
 
-const mapStateToProps = ({ departments, employees }, { params } ) => ({
-    employeeId: params && params.id,
-    employee: params.id && employees.find(employee => employee.id.toString() === params.id.toString()),
-    departments: departments
-});
+const mapStateToProps = ({ departments, employees }, { params } ) => {
+    const employee = params.id && employees.find(employee => employee.id.toString() === params.id.toString());
+    const employeeId = params && params.id;
+    if (employee) {
+        employee.departmentId = departments.map(department => department.id)
+            .includes(employee.departmentId) ? employee.departmentId : '';
+    }
+
+    return { employeeId, employee, departments }
+};
 
 export default connect(mapStateToProps)(EmployeeForm);

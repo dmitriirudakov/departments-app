@@ -22,5 +22,4 @@ function createEmployee(data) {
         .then(res => res.data)
 }
 
-
 export default { fetchEmployees, updateEmployee, deleteEmployee, createEmployee };

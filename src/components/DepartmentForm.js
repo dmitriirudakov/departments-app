@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, ButtonGroup, ButtonToolbar } from 'react-bootstrap';  
+import { Button, ButtonGroup, ButtonToolbar } from 'react-bootstrap';
+import { 
+  DEPARTMENT_CREATE_REQUESTED, 
+  DEPARTMENT_DELETE_REQUESTED, 
+  DEPARTMENT_UPDATE_REQUESTED 
+} from '../redux/reducers/departmentsReducer';
 
 class DepartmentForm extends Component {
 
@@ -39,16 +44,27 @@ class DepartmentForm extends Component {
     this.setState({ formState: this.getFormState(nextProps, this.state)})
   }
 
-  createDepartment() {
-    console.log('createDepartment', this.state.formState.department);
+  createDepartment(event) {
+    event && event.preventDefault();
+    this.props.dispatch({
+      type: DEPARTMENT_CREATE_REQUESTED, 
+      payload: this.state.formState.department
+    });
   }
 
-  updateDepartment() {
-    console.log('updateDepartment', this.state.formState.department);
+  updateDepartment(event) {
+    event && event.preventDefault();
+    this.props.dispatch({
+      type: DEPARTMENT_UPDATE_REQUESTED, 
+      payload: this.state.formState.department
+    });
   }
   
   deleteDepartment() {
-    console.log('deleteDepartment', this.state.formState.department);
+    this.props.dispatch({
+      type: DEPARTMENT_DELETE_REQUESTED, 
+      payload: this.state.formState.department
+    });
   }
 
   getFormState(props, state) {
@@ -83,7 +99,7 @@ class DepartmentForm extends Component {
           { formState &&
             <div>
               <h3>{ formState.title }</h3>
-              <form name="department-form">
+              <form name="department-form" onSubmit={formState.onSubmit}>
                 <div className="form-group">
                   <div className="input-group">
                     <label className="pull-left" htmlFor="department-name">Department Name:</label>
@@ -92,7 +108,7 @@ class DepartmentForm extends Component {
                 </div>
                 <ButtonToolbar>
                   <ButtonGroup>
-                    <Button bsStyle="success" onClick={() => formState.onSubmit()}>{formState.submitBtnText}</Button>
+                    <Button bsStyle="success" type="submit">{formState.submitBtnText}</Button>
                   </ButtonGroup>
                   { formState.removable && 
                   <ButtonGroup>

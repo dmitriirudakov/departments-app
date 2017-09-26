@@ -1,11 +1,11 @@
 import fetchEmployeesSaga from './fetchEmployeesSaga';
-import createEmployeesSaga from './createEmployeeSaga';
-import deleteEmployeesSaga from './deleteEmployeeSaga';
+import createEmployeeSaga from './createEmployeeSaga';
+import deleteEmployeeSaga from './deleteEmployeeSaga';
 import updateEmployeeSaga from './updateEmployeeSaga';
 
 export default [ 
     fetchEmployeesSaga, 
-    createEmployeesSaga, 
-    deleteEmployeesSaga, 
+    createEmployeeSaga, 
+    deleteEmployeeSaga, 
     updateEmployeeSaga 
 ];

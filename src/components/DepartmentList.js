@@ -15,6 +15,7 @@ class DepartmentList extends Component {
 
     return (
         <div>
+            <h4>Department List:</h4>
             { departmentItems }
             <DepartmentDefault />
         </div>
@@ -23,7 +24,10 @@ class DepartmentList extends Component {
 }
 
 DepartmentList.propTypes = {
-    departments: PropTypes.array.isRequired
+    departments: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        id: PropTypes.string.isRequired
+    })).isRequired
 };
 
 const mapStateToProps = ({ departments }) => ({

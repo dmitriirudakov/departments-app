@@ -16,8 +16,6 @@ export const EMPLOYEE_UPDATE_REQUESTED = 'EMPLOYEE::UPDATE_REQUESTED';
 export const EMPLOYEE_UPDATE_SUCCEEDED = 'EMPLOYEE::UPDATE_SUCCEEDED';
 export const EMPLOYEE_UPDATE_FAILED = 'EMPLOYEE::UPDATE_FAILED';
 
-export const EMPLOYEE_REMOVE_FROM_DEPARTMENT = 'EMPLOYEE::REMOVE_FROM_DEPARTMENT';
-
 export default (state = initialState.employees, action = {}) => {
     const { type, payload } = action;
     switch (type) {
@@ -37,16 +35,6 @@ export default (state = initialState.employees, action = {}) => {
               ...payload
           };    
       });
-      case EMPLOYEE_REMOVE_FROM_DEPARTMENT:
-        return state.map((item) => {
-          if (item.id !== payload.id) {
-              return item;
-          }
-          return {
-              ...item,
-              ...{ departmentId: null }
-          };  
-        });
         
       default: return state;
     }
