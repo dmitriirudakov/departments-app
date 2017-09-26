@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Department from './Department';
+import DepartmentDefault from './DepartmentDefault';
 
 class DepartmentList extends Component {
   render() {
@@ -15,6 +16,7 @@ class DepartmentList extends Component {
     return (
         <div>
             { departmentItems }
+            <DepartmentDefault />
         </div>
     );
   }

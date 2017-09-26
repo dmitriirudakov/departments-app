@@ -114,7 +114,7 @@ class DepartmentForm extends Component {
 
 const mapStateToProps = ({ departments }, { params } ) => ({
   departmentId: params && params.id,
-  department: departments.find(department => Number(department.id) === Number(params.id))
+  department: params.id && departments.find(department => department.id.toString() === params.id.toString())
 });
 
 export default connect(mapStateToProps)(DepartmentForm);

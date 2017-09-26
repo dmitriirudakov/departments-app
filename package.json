@@ -22,7 +22,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "json-server": "node ./node_modules/json-server/bin/index.js --watch ./json-server/db.json --port 8080"
+    "json-server": "node ./json-server/server.js"
   },
   "devDependencies": {
     "json-server": "^0.12.0",

@@ -36,8 +36,7 @@ class EmployeeForm extends Component {
             removable: true,
             employee: null
             },
-            employeeModel: { firstName: '', lastName: '', departmentId: '', id: '5' },
-            // TODO: generate id as uuid on backend
+            employeeModel: { firstName: '', lastName: '', departmentId: '', id: '' },
         }
         state.formState = this.getFormState(props, state);
         
@@ -160,8 +159,8 @@ class EmployeeForm extends Component {
 
 const mapStateToProps = ({ departments, employees }, { params } ) => ({
     employeeId: params && params.id,
-    employee: employees.find(employee => Number(employee.id) === Number(params.id)),
+    employee: params.id && employees.find(employee => employee.id.toString() === params.id.toString()),
     departments: departments
 });
-  
+
 export default connect(mapStateToProps)(EmployeeForm);
