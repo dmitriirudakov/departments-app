@@ -5,10 +5,12 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux'; 
 
 import store from './redux/configureStore';
-import App from './containers/App';
 import registerServiceWorker from './registerServiceWorker';
-import DepartmentForm from './components/DepartmentForm';
-import EmployeeForm from './components/EmployeeForm';
+import { 
+  HomePageContainer, 
+  DepartmentPageContainer, 
+  EmployeePageContainer 
+} from './containers';
 
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -21,10 +23,10 @@ const history = syncHistoryWithStore(browserHistory, store);
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={App}>
-        <Route path="/department(/:id)" component={DepartmentForm}/>
-        <Route path="/employee(/:id)" component={EmployeeForm}/>
-      </Route>
+      <Route path="/" component={HomePageContainer}></Route>
+      <Route path="/home" component={HomePageContainer}></Route>
+      <Route path="/department(/:id)" component={DepartmentPageContainer}/>
+      <Route path="/employee(/:id)" component={EmployeePageContainer}/>
     </Router>
   </Provider>,
   document.getElementById('root')

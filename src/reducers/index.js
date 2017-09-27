@@ -10,3 +10,7 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
+
+export * from './departmentsReducer';
+export * from './employeesReducer';
+export * from './initialState';
