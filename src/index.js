@@ -7,10 +7,11 @@ import { Provider } from 'react-redux';
 import store from './redux/configureStore';
 import registerServiceWorker from './registerServiceWorker';
 import { 
-  HomePageContainer, 
-  DepartmentPageContainer, 
-  EmployeePageContainer 
+	HomePage, 
+	DepartmentPage, 
+	EmployeePage 
 } from './containers';
+import { DEFAULT_ROUTE, HOME_ROUTE, EMPLOYEE_ROUTE, DEPARTMENT_ROUTE, OPTIONAL_ID_ROUTE } from './constants'
 
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -21,14 +22,14 @@ require('bootstrap');
 const history = syncHistoryWithStore(browserHistory, store);
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Router history={history}>
-      <Route path="/" component={HomePageContainer}></Route>
-      <Route path="/home" component={HomePageContainer}></Route>
-      <Route path="/department(/:id)" component={DepartmentPageContainer}/>
-      <Route path="/employee(/:id)" component={EmployeePageContainer}/>
-    </Router>
-  </Provider>,
-  document.getElementById('root')
+	<Provider store={store}>
+		<Router history={history}>
+			<Route path={DEFAULT_ROUTE} component={HomePage}></Route>
+			<Route path={HOME_ROUTE} component={HomePage}></Route>
+			<Route path={`${DEPARTMENT_ROUTE}${OPTIONAL_ID_ROUTE}`} component={DepartmentPage}/>
+			<Route path={`${EMPLOYEE_ROUTE}${OPTIONAL_ID_ROUTE}`} component={EmployeePage}/>
+		</Router>
+	</Provider>,
+	document.getElementById('root')
 );
 registerServiceWorker();

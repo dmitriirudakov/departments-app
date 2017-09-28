@@ -70,11 +70,11 @@ class EmployeeEditForm extends Component {
 				<form name="employee-form" onSubmit={updateEmployee}>
 					<div className="form-group">
 						<label className="pull-left" htmlFor="first-name">First Name:</label>
-						<input onChange={onFirstNameChange} value={employee.firstName} type="text" className="form-control" id="first-name" aria-describedby="first-name" />
+						<input type="text" required onChange={onFirstNameChange} value={employee.firstName} className="form-control" id="first-name" aria-describedby="first-name" />
 					</div>
 					<div className="form-group">
 						<label className="pull-left" htmlFor="last-name">Last Name:</label>
-						<input onChange={onLastNameChange} value={employee.lastName} type="text" className="form-control" id="last-name" aria-describedby="last-name" />
+						<input type="text" required onChange={onLastNameChange} value={employee.lastName} className="form-control" id="last-name" aria-describedby="last-name" />
 					</div>
 					<div className="form-group">
 						<label className="pull-left" htmlFor="department">Department:</label>

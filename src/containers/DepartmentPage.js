@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import { LayoutContainer } from './';
+import { Layout } from './';
 import { DepartmentCreateForm, DepartmentEditForm } from '../components';
-import {
-	DEPARTMENT_CREATE_REQUESTED, 
-	DEPARTMENT_DELETE_REQUESTED, 
-	DEPARTMENT_UPDATE_REQUESTED 
-} from '../reducers';
+import { createDepartment, deleteDepartment, updateDepartment } from '../actions';
 
-class DepartmentPageContainer extends Component {
+class DepartmentPage extends Component {
 
 	render() {
-		const { department, departmentId, onCreate, onUpdate, onDelete } = this.props;
+		const { department, departmentId } = this.props;
+		const { onCreate, onUpdate, onDelete } = this.props.storeActions;
 		const createFormProps = { onCreate };
 		const editFormProps = { department, onUpdate, onDelete }
 		
 		return (
-			 <LayoutContainer>
+			 <Layout>
 				{ !departmentId && <DepartmentCreateForm {...createFormProps} /> }
 				{ !!department && <DepartmentEditForm {...editFormProps} /> }
-			</LayoutContainer>
+			</Layout>
 		)
 	}
 }
@@ -34,27 +32,12 @@ const mapStateToProps = ({ departments, employees }, { params } ) => ({
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		onCreate(payload) {
-			dispatch({
-				type: DEPARTMENT_CREATE_REQUESTED, 
-				payload
-			});
-		},
-	
-		onUpdate(payload) {
-			dispatch({
-				type: DEPARTMENT_UPDATE_REQUESTED, 
-				payload
-			});
-		},
-	
-		onDelete(payload) {
-			dispatch({
-				type: DEPARTMENT_DELETE_REQUESTED, 
-				payload
-			});
-		}
+		storeActions: bindActionCreators({
+			onCreate: createDepartment,
+			onDelete: deleteDepartment,
+			onUpdate: updateDepartment
+		}, dispatch)
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DepartmentPageContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(DepartmentPage)

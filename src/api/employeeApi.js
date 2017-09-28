@@ -1,24 +1,24 @@
 import axios from 'axios';
 
-const employeesUrl = 'http://localhost:8080/employees/';
+import { EMPLOYEE_API_URL } from '../constants/';
 
 function fetchEmployees() {
-    return axios.get(employeesUrl)
+    return axios.get(EMPLOYEE_API_URL)
         .then(res => res.data)
 }
 
 function updateEmployee(id, data) {
-    return axios.put(`${employeesUrl}${id}`, data)
+    return axios.put(`${EMPLOYEE_API_URL}${id}`, data)
         .then(res => res.data)
 }
 
 function deleteEmployee(id) {
-    return axios.delete(`${employeesUrl}${id}`)
+    return axios.delete(`${EMPLOYEE_API_URL}${id}`)
         .then(res => res.data)
 }
 
 function createEmployee(data) {
-    return axios.post(employeesUrl, data)
+    return axios.post(EMPLOYEE_API_URL, data)
         .then(res => res.data)
 }
 

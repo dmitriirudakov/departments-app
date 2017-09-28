@@ -4,8 +4,8 @@ import deleteEmployeeSaga from './deleteEmployeeSaga';
 import updateEmployeeSaga from './updateEmployeeSaga';
 
 export default [ 
-    fetchEmployeesSaga, 
-    createEmployeeSaga, 
-    deleteEmployeeSaga, 
-    updateEmployeeSaga 
+	fetchEmployeesSaga, 
+	createEmployeeSaga, 
+	deleteEmployeeSaga, 
+	updateEmployeeSaga 
 ];

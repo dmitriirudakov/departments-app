@@ -36,7 +36,7 @@ class DepartmentForm extends Component {
 						<div className="form-group">
 							<div className="input-group">
 								<label className="pull-left" htmlFor="department-name">Department Name:</label>
-								<input type="text" onChange={onNameChange} value={department.name} className="form-control" id="department-name" aria-describedby="department-name" />
+								<input type="text" required onChange={onNameChange} value={department.name} className="form-control" id="department-name" aria-describedby="department-name" />
 							</div>
 						</div>
 						<ButtonToolbar>

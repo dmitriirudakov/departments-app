@@ -5,7 +5,7 @@ import { push } from 'react-router-redux';
 import { Header, DepartmentList } from '../components';
 import { EMPLOYEES_FETCH_REQUESTED, DEPARTMENTS_FETCH_REQUESTED } from '../reducers';
 
-class LayoutContainer extends Component {
+class Layout extends Component {
 
 	constructor(props) {
 		super(props);
@@ -83,4 +83,4 @@ const mapDispatchToProps = dispatch => {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LayoutContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

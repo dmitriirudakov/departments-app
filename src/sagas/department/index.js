@@ -4,8 +4,8 @@ import deleteDepartmentSaga from './deleteDepartmentSaga';
 import updateDepartmentSaga from './updateDepartmentSaga';
 
 export default [ 
-    fetchDepartmentsSaga, 
-    createDepartmentSaga, 
-    deleteDepartmentSaga, 
-    updateDepartmentSaga 
+	fetchDepartmentsSaga, 
+	createDepartmentSaga, 
+	deleteDepartmentSaga, 
+	updateDepartmentSaga 
 ];
