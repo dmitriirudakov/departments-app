@@ -10,10 +10,10 @@ import {
 function* createEmployee(action) {
 	try {
 		const employee = yield call(employeeApi.createEmployee, action.payload);
-		yield put({type: EMPLOYEE_CREATE_SUCCEEDED, payload: employee});
+		yield put({type: EMPLOYEE_CREATE_SUCCEEDED, payload: employee, meta: action.meta});
 	} catch (e) {
 		console.error(e);
-		yield put({type: EMPLOYEE_CREATE_FAILED, message: e.message});
+		yield put({type: EMPLOYEE_CREATE_FAILED, message: e.message, meta: action.meta});
 	}
 }
 

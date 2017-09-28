@@ -10,10 +10,10 @@ import {
 function* deleteEmployee(action) {
 	try {
 		yield call(employeeApi.deleteEmployee, action.payload.id);
-		yield put({type: EMPLOYEE_DELETE_SUCCEEDED, payload: action.payload});
+		yield put({type: EMPLOYEE_DELETE_SUCCEEDED, payload: action.payload, meta: action.meta});
 	} catch (e) {
 		console.error(e);
-		yield put({type: EMPLOYEE_DELETE_FAILED, message: e.message});
+		yield put({type: EMPLOYEE_DELETE_FAILED, message: e.message, meta: action.meta});
 	}
 }
 

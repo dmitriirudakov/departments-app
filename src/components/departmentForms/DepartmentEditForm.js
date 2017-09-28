@@ -31,7 +31,9 @@ class DepartmentForm extends Component {
 
 	updateDepartment(event) {
 		event && event.preventDefault();
-		this.props.onUpdate(this.state.department);
+		this.props.onUpdate(this.state.department).then(() => {
+			console.log('success!!!!!')
+		});
 	}
 	
 	deleteDepartment() {

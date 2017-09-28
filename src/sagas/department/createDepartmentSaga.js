@@ -10,10 +10,10 @@ import {
 function* createDepartment(action) {
 	try {
 		const department = yield call(departmentApi.createDepartment, action.payload);
-		yield put({type: DEPARTMENT_CREATE_SUCCEEDED, payload: department});
+		yield put({type: DEPARTMENT_CREATE_SUCCEEDED, payload: department, meta: action.meta});
 	} catch (e) {
 		console.error(e);
-		yield put({type: DEPARTMENT_CREATE_FAILED, message: e.message});
+		yield put({type: DEPARTMENT_CREATE_FAILED, message: e.message, meta: action.meta});
 	}
 }
 

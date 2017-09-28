@@ -12,8 +12,9 @@ class DepartmentPage extends Component {
 		const { department, departmentId } = this.props;
 		const { onCreate, onUpdate, onDelete } = this.props.storeActions;
 		const createFormProps = { onCreate };
-		const editFormProps = { department, onUpdate, onDelete }
 		
+		const editFormProps = { department, onUpdate, onDelete };
+
 		return (
 			 <Layout>
 				{ !departmentId && <DepartmentCreateForm {...createFormProps} /> }

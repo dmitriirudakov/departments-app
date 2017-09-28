@@ -14,11 +14,18 @@ class DepartmentForm extends Component {
 		this.createDepartment = this.createDepartment.bind(this);
 
 		this.state = { department: { name: '' } };
+		this.baseState = Object.assign({}, this.state);
 	}
 
 	createDepartment(event) {
 		event && event.preventDefault();
-		this.props.onCreate(this.state.department);
+		this.props.onCreate(this.state.department).then(() => {
+			this.resetState();
+		});
+	}
+
+	resetState() {
+		this.setState(this.baseState);
 	}
 	
 	onNameChange(event) {

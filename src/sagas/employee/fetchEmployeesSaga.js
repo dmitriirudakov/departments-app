@@ -10,10 +10,10 @@ import {
 function* fetchEmployees(action) {
 	try {
 		const employees = yield call(employeeApi.fetchEmployees);
-		yield put({type: EMPLOYEES_FETCH_SUCCEEDED, payload: employees });
+		yield put({type: EMPLOYEES_FETCH_SUCCEEDED, payload: employees, meta: action.meta});
 	} catch (e) {
 		console.error(e);
-		yield put({type: EMPLOYEES_FETCH_FAILED, message: e.message});
+		yield put({type: EMPLOYEES_FETCH_FAILED, message: e.message, meta: action.meta});
 	}
 }
 

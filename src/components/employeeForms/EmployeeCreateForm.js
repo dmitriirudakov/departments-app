@@ -24,6 +24,7 @@ class EmployeeCreateForm extends Component {
 		this.state = {
 			employee: { firstName: '', lastName: '', departmentId: '', id: '' },
 		}
+		this.baseState = Object.assign({}, this.state);
 	}
 
 	onFirstNameChange(event) {
@@ -43,7 +44,13 @@ class EmployeeCreateForm extends Component {
 
 	createEmployee(event) {
 		event && event.preventDefault();
-		this.props.onCreate(this.state.employee);
+		this.props.onCreate(this.state.employee).then(() => {
+			this.resetState();
+		});
+	}
+
+	resetState() {
+		this.setState(this.baseState);
 	}
 
 	render() {

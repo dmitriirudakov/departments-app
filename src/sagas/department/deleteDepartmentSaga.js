@@ -10,10 +10,10 @@ import {
 function* deleteDepartment(action) {
 	try {
 		yield call(departmentApi.deleteDepartment, action.payload.id);
-		yield put({type: DEPARTMENT_DELETE_SUCCEEDED, payload: action.payload});
+		yield put({type: DEPARTMENT_DELETE_SUCCEEDED, payload: action.payload, meta: action.meta});
 	} catch (e) {
 		console.error(e);
-		yield put({type: DEPARTMENT_DELETE_FAILED, message: e.message});
+		yield put({type: DEPARTMENT_DELETE_FAILED, message: e.message, meta: action.meta});
 	}
 }
 
