@@ -5,7 +5,7 @@ import {
 	DEPARTMENTS_FETCH_SUCCEEDED, 
 	DEPARTMENTS_FETCH_FAILED, 
 	DEPARTMENTS_FETCH_REQUESTED 
-} from '../../reducers';
+} from '../../state';
 
 function* fetchDepartments(action) {
 	try {

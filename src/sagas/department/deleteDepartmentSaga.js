@@ -5,7 +5,7 @@ import {
 	DEPARTMENT_DELETE_SUCCEEDED, 
 	DEPARTMENT_DELETE_FAILED, 
 	DEPARTMENT_DELETE_REQUESTED 
-} from '../../reducers';
+} from '../../state';
 
 function* deleteDepartment(action) {
 	try {

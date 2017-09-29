@@ -5,7 +5,7 @@ import {
 	DEPARTMENT_UPDATE_SUCCEEDED, 
 	DEPARTMENT_UPDATE_FAILED, 
 	DEPARTMENT_UPDATE_REQUESTED 
-} from '../../reducers';
+} from '../../state';
 
 function* updateDepartment(action) {
 	try {

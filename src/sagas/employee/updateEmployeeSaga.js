@@ -2,10 +2,10 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import { employeeApi } from '../../api';
 import { 
-	EMPLOYEE_UPDATE_SUCCEEDED, 
-	EMPLOYEE_UPDATE_FAILED, 
-	EMPLOYEE_UPDATE_REQUESTED 
-} from '../../reducers';
+	EMPLOYEE_UPDATE_SUCCEEDED,
+	EMPLOYEE_UPDATE_FAILED,
+	EMPLOYEE_UPDATE_REQUESTED
+} from '../../state';
 
 function* updateEmployee(action) {
 	try {

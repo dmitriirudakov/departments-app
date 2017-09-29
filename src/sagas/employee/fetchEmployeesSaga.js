@@ -5,7 +5,7 @@ import {
 	EMPLOYEES_FETCH_SUCCEEDED, 
 	EMPLOYEES_FETCH_FAILED, 
 	EMPLOYEES_FETCH_REQUESTED 
-} from '../../reducers';
+} from '../../state';
 
 function* fetchEmployees(action) {
 	try {

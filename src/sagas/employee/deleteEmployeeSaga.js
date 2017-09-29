@@ -5,7 +5,7 @@ import {
 	EMPLOYEE_DELETE_SUCCEEDED, 
 	EMPLOYEE_DELETE_FAILED, 
 	EMPLOYEE_DELETE_REQUESTED 
-} from '../../reducers';
+} from '../../state';;
 
 function* deleteEmployee(action) {
 	try {

@@ -5,7 +5,7 @@ import {
 	DEPARTMENT_CREATE_SUCCEEDED, 
 	DEPARTMENT_CREATE_FAILED, 
 	DEPARTMENT_CREATE_REQUESTED 
-} from '../../reducers';
+} from '../../state';
 
 function* createDepartment(action) {
 	try {
