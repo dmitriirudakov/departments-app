@@ -1,4 +1,13 @@
 {
-  "departments": [],
+  "departments": [
+    {
+      "id": "B15ilI6oZ",
+      "name": "a"
+    },
+    {
+      "id": "Bk3jlUasb",
+      "name": "aaa"
+    }
+  ],
   "employees": []
 }

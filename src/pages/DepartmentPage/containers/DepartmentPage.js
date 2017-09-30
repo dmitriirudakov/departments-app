@@ -1,23 +1,57 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { reset } from 'redux-form';
+import { push } from 'react-router-redux';
 
-import { DepartmentCreateForm, DepartmentEditForm } from '../components';
-import { createDepartment, deleteDepartment, updateDepartment } from '../../../state/department';
+import { FORM_NAMES, DEFAULT_ROUTE } from '../../../constants/';
+import { CreateDepartmentForm, EditDepartmentForm } from '../components';
+import { createDepartment, deleteDepartment, updateDepartment } from '../../../state';
 
 class DepartmentPage extends Component {
 
+	onCreateDepartment(data) {
+		this.props.storeActions.createDepartment(data).then(() => {
+			this.props.resetCreateDepartmentForm();
+		});
+	}
+
+	onUpdateDepartment(data) {
+		this.props.storeActions.updateDepartment(data);
+	}
+
+	onDeleteDepartment(data) {
+		this.props.storeActions.deleteDepartment(data).then(() => {
+			this.props.goToDefault();
+		});
+	}
+
 	render() {
 		const { department, departmentId } = this.props;
-		const { onCreate, onUpdate, onDelete } = this.props.storeActions;
-		const createFormProps = { onCreate };
 		
-		const editFormProps = { department, onUpdate, onDelete };
+		const createFormProps = {
+			onSubmit: this.onCreateDepartment.bind(this) 
+		};
+		const editFormProps = {
+			initialValues: department,
+			onSubmit: this.onUpdateDepartment.bind(this),
+			onDelete: this.onDeleteDepartment.bind(this)
+		};
+
+		const isEdit = !!department;
+		const isCreate = !departmentId;
+		const isNotFound = !!departmentId && !department;
+
+		if (isNotFound) {
+			return <h2> Ooops! Department not found!</h2>;
+		} else if (!isEdit && !isCreate) {
+			return <h2> Ooops! Something goes wrong!</h2>;
+		}
 
 		return (
 			<div>
-				{ !departmentId && <DepartmentCreateForm {...createFormProps} /> }
-				{ !!department && <DepartmentEditForm {...editFormProps} /> }
+				{ !departmentId && <CreateDepartmentForm {...createFormProps} /> }
+				{ !!department && <EditDepartmentForm {...editFormProps} /> }
 			</div>
 		)
 	}
@@ -33,10 +67,12 @@ const mapStateToProps = ({ departments, employees }, { params } ) => ({
 const mapDispatchToProps = (dispatch) => {
 	return {
 		storeActions: bindActionCreators({
-			onCreate: createDepartment,
-			onDelete: deleteDepartment,
-			onUpdate: updateDepartment
-		}, dispatch)
+			createDepartment,
+			deleteDepartment,
+			updateDepartment
+		}, dispatch),
+		goToDefault: () => dispatch(push(`${DEFAULT_ROUTE}`)),
+		resetCreateDepartmentForm: () => dispatch(reset(FORM_NAMES.CREATE_DEPARTMENT))
 	}
 }
 

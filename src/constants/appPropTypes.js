@@ -10,7 +10,7 @@ export const employeeProp = PropTypes.shape({
 	id: PropTypes.string.isRequired,
 	firstName: PropTypes.string.isRequired,
 	lastName: PropTypes.string.isRequired,
-	departmentId: PropTypes.string.isRequired
+	departmentId: PropTypes.string
 });
 
 export const departmentRequiredProp = departmentProp.isRequired;

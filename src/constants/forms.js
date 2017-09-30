@@ -1,0 +1,23 @@
+export const FORM_MODES = {
+	EDIT: 'EDIT',
+	CREATE: 'CREATE'
+};
+
+export const FORM_NAMES = {
+	CREATE_EMPLOYEE: 'FORM::CREATE_EMPLOYEE',
+	EDIT_EMPLOYEE: 'FORM::EDIT_EMPLOYEE',
+	CREATE_DEPARTMENT: 'FORM::CREATE_DEPARTMENT',
+	EDIT_DEPARTMENT: 'FORM::EDIT_DEPARTMENT'
+}
+
+export const EMPLOYEE_FORM_FIELDS = {
+	ID: 'id',
+	FIRST_NAME: 'firstName',
+	LAST_NAME: 'lastName',
+	DEPARTMENT_ID: 'departmentId'
+};
+
+export const DEPARTMENT_FORM_FIELDS = {
+	ID: 'id',
+	NAME: 'name'
+}

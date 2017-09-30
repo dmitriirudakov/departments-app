@@ -11,7 +11,7 @@ class DepartmentDefault extends Component {
 		onEmployeeClick: PropTypes.func.isRequired
 	};
 
-	render() {    
+	render() {
 		const { employees, onEmployeeClick } = this.props;
 
 		if (!employees || !employees.length) {
