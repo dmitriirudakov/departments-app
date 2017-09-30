@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup } from 'react-bootstrap';
 
-import { actionArrayRequired } from '../../constants';
+import { actionArrayRequired } from '../../../constants';
 
 class Actions extends Component {
 

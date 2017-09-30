@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
@@ -44,8 +43,7 @@ const mapDispatchToProps = dispatch => {
 		},
 		onEmployeeClick: id => {
 			dispatch(push(`${EMPLOYEE_ROUTE}/${id}`))
-		},
-		dispatch
+		}
 	}
 }
 
