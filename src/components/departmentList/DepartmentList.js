@@ -9,6 +9,15 @@ class DepartmentList extends Component {
 
 	render() {
 		const { departments, employees, onDepartmentClick, onEmployeeClick } = this.props;
+		const listLabel = <h4>Department List:</h4>;
+
+		if ((!Array.isArray(departments) || !departments.length) && 
+			(!Array.isArray(employees) || !employees.length)) {
+				return <div>
+							{ listLabel }
+							<p>There are no items created yet</p>
+						</div>
+		}
 
 		const departmentItems = departments.map((department) => {
 			const departmentEmployees = employees.filter(e => e.departmentId === department.id);
@@ -23,7 +32,7 @@ class DepartmentList extends Component {
 
 		return (
 			<div>
-				<h4>Department List:</h4>
+				{ listLabel }
 				{ departmentItems }
 				<DepartmentDefault {...departmentDefaultProps}/>
 			</div>
