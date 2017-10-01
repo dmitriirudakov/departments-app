@@ -51,10 +51,12 @@ class DepartmentPage extends Component {
 		const { department, departmentId, loading } = this.props;
 		
 		const createFormProps = {
+			loading,
 			onSubmit: this.onCreateDepartment.bind(this) 
 		};
 		const editFormProps = {
 			initialValues: department,
+			loading,
 			onSubmit: this.onUpdateDepartment.bind(this),
 			onDelete: this.onDeleteDepartment.bind(this)
 		};
@@ -63,9 +65,9 @@ class DepartmentPage extends Component {
 		const isCreate = !departmentId;
 		const isNotFound = !!departmentId && !department;
 
-		if (isNotFound) {
+		if (isNotFound && !loading) {
 			return <h2> Ooops! Department not found!</h2>;
-		} else if (!isEdit && !isCreate) {
+		} else if (!isEdit && !isCreate && !loading) {
 			return <h2> Ooops! Something goes wrong!</h2>;
 		}
 
@@ -85,7 +87,7 @@ const mapStateToProps = (state, { params } ) => ({
 	departmentId: params && params.id,
 	department: params && params.id && 
 		state.departments.find(department => department.id.toString() === params.id.toString()),
-	loading: loading.isAnyDepartmentActionLoading(state)
+	loading: loading.isAnyDepartmentActionLoading(state) || loading.isAnyFetchLoading(state)
 });
 
 const mapDispatchToProps = (dispatch) => {

@@ -52,11 +52,13 @@ class EmployeePage extends Component {
 		
 		const createFormProps = {
 			departments,
+			loading,
 			onSubmit: this.onCreateEmployee.bind(this) 
 		};
 		const editFormProps = {
 			initialValues: employee,
 			departments,
+			loading,
 			onSubmit: this.onUpdateEmployee.bind(this),
 			onDelete: this.onDeleteEmployee.bind(this)
 		};
@@ -65,9 +67,9 @@ class EmployeePage extends Component {
 		const isCreate = !employeeId;
 		const isNotFound = !!employeeId && !employee;
 
-		if (isNotFound) {
+		if (isNotFound && !loading) {
 			return <h2> Ooops! Employee not found!</h2>;
-		} else if (!isEdit && !isCreate) {
+		} else if (!isEdit && !isCreate && !loading) {
 			return <h2> Ooops! Something goes wrong!</h2>;
 		}
 
@@ -86,7 +88,7 @@ const mapStateToProps = (state, { params } ) => ({
 	employeeId: params && params.id,
 	employee: params && params.id
 		&& state.employees.find(employee => employee.id.toString() === params.id.toString()),
-	loading: loading.isAnyEmployeeActionLoading(state)
+	loading: loading.isAnyEmployeeActionLoading(state) || loading.isAnyFetchLoading(state)
 })
 
 const mapDispatchToProps = (dispatch) => {

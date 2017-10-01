@@ -2,12 +2,11 @@ import React from 'react';
 import { Button, ButtonGroup, ButtonToolbar } from 'react-bootstrap';
 
 const FormButtons = props => {
-	const { isEditMode, onDelete } = props;
-
+	const { isEditMode, onDelete, submitDisabled } = props;
 	return (
 		<ButtonToolbar>
 			<ButtonGroup>
-				<Button bsStyle="success" type="submit">
+				<Button disabled={submitDisabled} bsStyle="success" type="submit">
 					{ isEditMode ? 'Update' : 'Create' }
 				</Button>
 			</ButtonGroup>

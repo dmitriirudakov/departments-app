@@ -6,27 +6,28 @@ import { FormButtons } from '../../../components';
 import { FORM_NAMES, FORM_MODES, EMPLOYEE_FORM_FIELDS, departmentArrayRequiredProp, employeeProp } from '../../../constants';
 
 const EmployeeForm = props => {
-	const { mode, onSubmit, onDelete, handleSubmit, departments } = props;
+	const { mode, onSubmit, onDelete, handleSubmit, departments, pristine, loading } = props;
 	const isEditMode = mode ===  FORM_MODES.EDIT;
+	
 	return (
 		<div>
 			<h3>{ isEditMode ? 'Edit' : 'Create' } Employee</h3>
 			<form name="employee-form" onSubmit={handleSubmit(onSubmit)}>
 				<div className="form-group">
 					<label className="pull-left" htmlFor="first-name">First Name:</label>
-					<Field className="form-control" required id="first-name" 
+					<Field className="form-control" disabled={loading} required maxLength="30" id="first-name" 
 						name={EMPLOYEE_FORM_FIELDS.FIRST_NAME} component="input" type="text" 
 						autoComplete="off"/>
 				</div>
 				<div className="form-group">
 					<label className="pull-left" htmlFor="last-name">Last Name:</label>
-					<Field className="form-control" required id="last-name" 
+					<Field className="form-control" disabled={loading} required maxLength="30" id="last-name" 
 						name={EMPLOYEE_FORM_FIELDS.LAST_NAME} component="input" type="text" 
 						autoComplete="off"/>
 				</div>
 				<div className="form-group">
 					<label className="pull-left" htmlFor="department">Department:</label>
-					<Field name={EMPLOYEE_FORM_FIELDS.DEPARTMENT_ID} component="select" className="form-control">
+					<Field name={EMPLOYEE_FORM_FIELDS.DEPARTMENT_ID} disabled={loading} component="select" className="form-control">
 						<option key={'default'} value="" disabled={true}>-- Select Department --</option>
 						{ 
 							departments.map((department) => {
@@ -35,7 +36,7 @@ const EmployeeForm = props => {
 						}
 					</Field>
 				</div>
-				<FormButtons isEditMode={isEditMode} onDelete={() => handleSubmit(onDelete)()}/>
+				<FormButtons isEditMode={isEditMode} submitDisabled={pristine || loading} onDelete={() => handleSubmit(onDelete)()}/>
 			</form> 
 		</div>
 	)

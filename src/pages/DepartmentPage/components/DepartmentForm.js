@@ -6,7 +6,7 @@ import { FormButtons } from '../../../components';
 import { FORM_NAMES, FORM_MODES, DEPARTMENT_FORM_FIELDS, departmentProp } from '../../../constants/';
 
 const DepartmentForm = props => {
-	const { mode, onSubmit, onDelete, handleSubmit } = props;
+	const { mode, loading, onSubmit, onDelete, handleSubmit, pristine } = props;
 	const isEditMode = mode === FORM_MODES.EDIT;
 	return (
 		<div>
@@ -15,12 +15,12 @@ const DepartmentForm = props => {
 				<div className="form-group">
 					<div className="input-group">
 						<label className="pull-left" htmlFor="department-name">Department Name:</label>
-						<Field className="form-control" required id="department-name" 
+						<Field className="form-control" required disabled={loading} maxLength="30" id="department-name" 
 							name={DEPARTMENT_FORM_FIELDS.NAME} component="input" type="text" 
 							autoComplete="off"/>
 					</div>
 				</div>
-				<FormButtons isEditMode={isEditMode} onDelete={() => handleSubmit(onDelete)()}/>
+				<FormButtons isEditMode={isEditMode} submitDisabled={pristine || loading} onDelete={() => handleSubmit(onDelete)()}/>
 			</form>
 		</div>
 	)
