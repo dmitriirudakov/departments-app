@@ -14,8 +14,8 @@ const DepartmentForm = props => {
 			<form name="department-form" onSubmit={handleSubmit(onSubmit)}>
 				<div className="form-group">
 					<div className="input-group">
-						<label className="pull-left" htmlFor="department-name">Department Name:</label>
-						<Field className="form-control" required disabled={loading} maxLength="30" id="department-name" 
+						<label className="pull-left" htmlFor="department-name">Department Name*:</label>
+						<Field className="form-control" required disabled={loading} maxLength="30" pattern="[A-Za-z0-9]{1}" id="department-name" 
 							name={DEPARTMENT_FORM_FIELDS.NAME} component="input" type="text" 
 							autoComplete="off"/>
 					</div>
