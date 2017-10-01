@@ -1,37 +1,37 @@
 {
-  "name": "departments-app",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "axios": "^0.16.2",
-    "bootstrap": "^3.3.7",
-    "halogen": "^0.2.0",
-    "jquery": "^3.2.1",
-    "prop-types": "^15.5.10",
-    "react": "^15.6.1",
-    "react-bootstrap": "^0.31.3",
-    "react-dom": "^15.6.1",
-    "react-notify-toast": "^0.3.2",
-    "react-redux": "^5.0.6",
-    "react-router": "^3.0.0",
-    "react-router-redux": "^4.0.0",
-    "react-scripts": "1.0.13",
-    "redux": "^3.7.2",
-    "redux-form": "^7.0.4",
-    "redux-saga": "^0.15.6",
-    "redux-saga-thunk": "^0.5.2"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "json-server": "node ./json-server/server.js"
-  },
-  "devDependencies": {
-    "connect-pause": "^0.1.0",
-    "json-server": "^0.12.0",
-    "redux-devtools-extension": "^2.13.2",
-    "shortid": "^2.2.8"
-  }
+	"name": "departments-app",
+	"version": "1.0.0",
+	"private": true,
+	"dependencies": {
+		"axios": "^0.16.2",
+		"bootstrap": "^3.3.7",
+		"halogen": "^0.2.0",
+		"jquery": "^3.2.1",
+		"prop-types": "^15.5.10",
+		"react": "^15.6.1",
+		"react-bootstrap": "^0.31.3",
+		"react-dom": "^15.6.1",
+		"react-notify-toast": "^0.3.2",
+		"react-redux": "^5.0.6",
+		"react-router": "^3.0.0",
+		"react-router-redux": "^4.0.0",
+		"react-scripts": "1.0.13",
+		"redux": "^3.7.2",
+		"redux-form": "^7.0.4",
+		"redux-saga": "^0.15.6",
+		"redux-saga-thunk": "^0.5.2"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test --env=jsdom",
+		"eject": "react-scripts eject",
+		"json-server": "node ./json-server/server.js"
+	},
+	"devDependencies": {
+		"connect-pause": "^0.1.0",
+		"json-server": "^0.12.0",
+		"redux-devtools-extension": "^2.13.2",
+		"shortid": "^2.2.8"
+	}
 }
