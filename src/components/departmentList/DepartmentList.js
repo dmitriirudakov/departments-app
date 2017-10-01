@@ -2,20 +2,23 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
+import { loading } from '../../services';
 import { Department, DepartmentDefault } from './components';
+import { AppLoader } from '../../components';
 import { DEPARTMENT_ROUTE, EMPLOYEE_ROUTE } from '../../constants';
 
 class DepartmentList extends Component {
 
 	render() {
-		const { departments, employees, onDepartmentClick, onEmployeeClick } = this.props;
+		const { departments, employees, onDepartmentClick, onEmployeeClick, loading } = this.props;
 		const listLabel = <h4>Department List:</h4>;
 
 		if ((!Array.isArray(departments) || !departments.length) && 
 			(!Array.isArray(employees) || !employees.length)) {
 				return <div>
 							{ listLabel }
-							<p>There are no items created yet</p>
+							{!loading && <p>There are no items created yet</p> }
+							{ loading && <AppLoader></AppLoader>}
 						</div>
 		}
 
@@ -40,9 +43,10 @@ class DepartmentList extends Component {
 	}
 }
 
-const mapStateToProps = ({ departments, employees }) => ({
-	departments, 
-	employees
+const mapStateToProps = state => ({
+	departments: state.departments,
+	employees: state.employees,
+	loading: loading.isAnyFetchLoading(state),
 });
 
 const mapDispatchToProps = dispatch => {

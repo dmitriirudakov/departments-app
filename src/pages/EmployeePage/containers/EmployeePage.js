@@ -14,9 +14,10 @@ import {
 	EMPLOYEE_UPDATE_SUCCEEDED_MSG,
 	EMPLOYEE_UPDATE_FAILED_MSG
 } from '../../../constants';
+import { AppLoader } from '../../../components';
 import { CreateEmployeeForm, EditEmployeeForm } from '../components';
 import { createEmployee, updateEmployee, deleteEmployee } from '../../../state';
-import { notification } from '../../../services';
+import { notification, loading } from '../../../services';
 
 class EmployeePage extends Component {
 
@@ -47,7 +48,7 @@ class EmployeePage extends Component {
 	}
 
 	render() {
-		const { employee, employeeId, departments } = this.props;
+		const { employee, employeeId, departments, loading } = this.props;
 		
 		const createFormProps = {
 			departments,
@@ -74,17 +75,18 @@ class EmployeePage extends Component {
 			<div>
 				{ !employeeId && !!departments && <CreateEmployeeForm {...createFormProps} /> }
 				{ !!employee && !!departments && <EditEmployeeForm {...editFormProps} /> }
+				{ loading && <AppLoader stretch={true}></AppLoader> }
 			</div>
 		)
 	}
 }
 
-
-const mapStateToProps = ({ departments, employees }, { params } ) => ({
-	departments,
+const mapStateToProps = (state, { params } ) => ({
+	departments: state.departments,
 	employeeId: params && params.id,
 	employee: params && params.id
-		&& employees.find(employee => employee.id.toString() === params.id.toString())
+		&& state.employees.find(employee => employee.id.toString() === params.id.toString()),
+	loading: loading.isAnyEmployeeActionLoading(state)
 })
 
 const mapDispatchToProps = (dispatch) => {

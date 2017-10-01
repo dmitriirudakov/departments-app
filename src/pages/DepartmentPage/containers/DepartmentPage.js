@@ -14,10 +14,10 @@ import {
 	DEPARTMENT_UPDATE_SUCCEEDED_MSG,
 	DEPARTMENT_UPDATE_FAILED_MSG
 } from '../../../constants/';
-
+import { AppLoader } from '../../../components';
 import { CreateDepartmentForm, EditDepartmentForm } from '../components';
 import { createDepartment, deleteDepartment, updateDepartment } from '../../../state';
-import { notification } from '../../../services';
+import { notification, loading } from '../../../services';
 
 class DepartmentPage extends Component {
 
@@ -48,7 +48,7 @@ class DepartmentPage extends Component {
 	}
 
 	render() {
-		const { department, departmentId } = this.props;
+		const { department, departmentId, loading } = this.props;
 		
 		const createFormProps = {
 			onSubmit: this.onCreateDepartment.bind(this) 
@@ -73,16 +73,19 @@ class DepartmentPage extends Component {
 			<div>
 				{ !departmentId && <CreateDepartmentForm {...createFormProps} /> }
 				{ !!department && <EditDepartmentForm {...editFormProps} /> }
+				{ loading && <AppLoader stretch={true}></AppLoader> }
 			</div>
 		)
 	}
 }
 
-const mapStateToProps = ({ departments, employees }, { params } ) => ({
-	departments, 
-	employees,
+const mapStateToProps = (state, { params } ) => ({
+	departments: state.departments, 
+	employees: state.employees,
 	departmentId: params && params.id,
-	department: params && params.id && departments.find(department => department.id.toString() === params.id.toString())
+	department: params && params.id && 
+		state.departments.find(department => department.id.toString() === params.id.toString()),
+	loading: loading.isAnyDepartmentActionLoading(state)
 });
 
 const mapDispatchToProps = (dispatch) => {
