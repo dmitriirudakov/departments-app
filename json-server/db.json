@@ -1,0 +1,32 @@
+{
+  "departments": [
+    {
+      "id": "rkPCV8RjW",
+      "name": "Test Department №1"
+    },
+    {
+      "id": "H1ryB80oZ",
+      "name": "Test Department №2"
+    }
+  ],
+  "employees": [
+    {
+      "id": "S1lVHUCsZ",
+      "firstName": "John",
+      "lastName": "Smith",
+      "departmentId": "rkPCV8RjW"
+    },
+    {
+      "id": "rJJ8rL0oZ",
+      "firstName": "William",
+      "lastName": "Jones",
+      "departmentId": "rkPCV8RjW"
+    },
+    {
+      "id": "HkYvBLRjZ",
+      "firstName": "Isabella",
+      "lastName": "Taylor",
+      "departmentId": "H1ryB80oZ"
+    }
+  ]
+}
