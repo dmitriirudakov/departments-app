@@ -1,13 +1,32 @@
 {
   "departments": [
     {
-      "id": "B15ilI6oZ",
-      "name": "a"
+      "id": "rkPCV8RjW",
+      "name": "Test Department №1"
     },
     {
-      "id": "Bk3jlUasb",
-      "name": "aaa"
+      "id": "H1ryB80oZ",
+      "name": "Test Department №2"
     }
   ],
-  "employees": []
+  "employees": [
+    {
+      "id": "S1lVHUCsZ",
+      "firstName": "John",
+      "lastName": "Smith",
+      "departmentId": "rkPCV8RjW"
+    },
+    {
+      "id": "rJJ8rL0oZ",
+      "firstName": "William",
+      "lastName": "Jones",
+      "departmentId": "rkPCV8RjW"
+    },
+    {
+      "id": "HkYvBLRjZ",
+      "firstName": "Isabella",
+      "lastName": "Taylor",
+      "departmentId": "H1ryB80oZ"
+    }
+  ]
 }
