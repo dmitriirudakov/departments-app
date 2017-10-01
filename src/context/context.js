@@ -1,8 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux'
+import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { middleware as thunkMiddleware } from 'redux-saga-thunk'
+import { middleware as thunkMiddleware } from 'redux-saga-thunk';
+// import 'babel-polyfill'; // TODO
 import createSagaMiddleware from 'redux-saga';
 
 import { rootReducer } from '../state';

@@ -13,7 +13,7 @@ function* fetchDepartments(action) {
 		yield put({type: DEPARTMENTS_FETCH_SUCCEEDED, payload: departments, meta: action.meta});
 	} catch (e) {
 		console.error(e);
-		yield put({type: DEPARTMENTS_FETCH_FAILED, message: e.message, meta: action.meta});
+		yield put({type: DEPARTMENTS_FETCH_FAILED, payload: e, error: true, meta: action.meta});
 	}
 }
 

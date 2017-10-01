@@ -13,7 +13,7 @@ function* createDepartment(action) {
 		yield put({type: DEPARTMENT_CREATE_SUCCEEDED, payload: department, meta: action.meta});
 	} catch (e) {
 		console.error(e);
-		yield put({type: DEPARTMENT_CREATE_FAILED, message: e.message, meta: action.meta});
+		yield put({type: DEPARTMENT_CREATE_FAILED, payload: e, error: true, meta: action.meta});
 	}
 }
 

@@ -4,7 +4,7 @@ import './vendors';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, Redirect } from 'react-router';
-import { Provider } from 'react-redux'; 
+import { Provider } from 'react-redux';
 
 import registerServiceWorker from './registerServiceWorker';
 import App from './app.root';

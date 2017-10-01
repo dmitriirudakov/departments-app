@@ -13,7 +13,7 @@ function* deleteDepartment(action) {
 		yield put({type: DEPARTMENT_DELETE_SUCCEEDED, payload: action.payload, meta: action.meta});
 	} catch (e) {
 		console.error(e);
-		yield put({type: DEPARTMENT_DELETE_FAILED, message: e.message, meta: action.meta});
+		yield put({type: DEPARTMENT_DELETE_FAILED, payload: e, error: true, meta: action.meta});
 	}
 }
 

@@ -13,7 +13,7 @@ function* updateDepartment(action) {
 		yield put({type: DEPARTMENT_UPDATE_SUCCEEDED, payload: departments, meta: action.meta });
 	} catch (e) {
 		console.error(e);
-		yield put({type: DEPARTMENT_UPDATE_FAILED, message: e.message, meta: action.meta});
+		yield put({type: DEPARTMENT_UPDATE_FAILED, payload: e, error: true, meta: action.meta});
 	}
 }
 

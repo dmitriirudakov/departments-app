@@ -10,10 +10,10 @@ import {
 function* updateEmployee(action) {
 	try {
 		const employees = yield call(employeeApi.updateEmployee, action.payload.id, action.payload);
-		yield put({type: EMPLOYEE_UPDATE_SUCCEEDED, payload: employees });
+		yield put({type: EMPLOYEE_UPDATE_SUCCEEDED, payload: employees, meta: action.meta });
 	} catch (e) {
 		console.error(e);
-		yield put({type: EMPLOYEE_UPDATE_FAILED, message: e.message});
+		yield put({type: EMPLOYEE_UPDATE_FAILED, payload: e, error: true, meta: action.meta});
 	}
 }
 

@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Notifications from 'react-notify-toast';
 
+import { EMPLOYEES_FETCH_FAILED_MSG, DEPARTMENTS_FETCH_FAILED_MSG } from './constants';
 import { Header, DepartmentList } from './components';
 import { fetchEmployees, fetchDepartments } from './state';
+import { notification } from './services';
 
 class App extends Component {
 	
 	componentDidMount() {
-		this.props.storeActions.fetchDepartments();
-		this.props.storeActions.fetchEmployees();
+		this.props.storeActions.fetchDepartments().catch(() => {
+			notification.showError(DEPARTMENTS_FETCH_FAILED_MSG)
+		});
+		this.props.storeActions.fetchEmployees().catch(() => {
+			notification.showError(EMPLOYEES_FETCH_FAILED_MSG)
+		});
 	}
 
 	render() {
@@ -30,6 +37,7 @@ class App extends Component {
 						</div>
 					</div>
 				</div>
+				<Notifications />
 			</div>
 		);
 	}

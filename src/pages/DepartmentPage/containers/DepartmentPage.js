@@ -4,25 +4,46 @@ import { bindActionCreators } from 'redux';
 import { reset } from 'redux-form';
 import { push } from 'react-router-redux';
 
-import { FORM_NAMES, DEFAULT_ROUTE } from '../../../constants/';
+import { 
+	FORM_NAMES, 
+	DEFAULT_ROUTE, 
+	DEPARTMENT_CREATE_SUCCEEDED_MSG,
+	DEPARTMENT_CREATE_FAILED_MSG,
+	DEPARTMENT_DELETE_SUCCEEDED_MSG,
+	DEPARTMENT_DELETE_FAILED_MSG,
+	DEPARTMENT_UPDATE_SUCCEEDED_MSG,
+	DEPARTMENT_UPDATE_FAILED_MSG
+} from '../../../constants/';
+
 import { CreateDepartmentForm, EditDepartmentForm } from '../components';
 import { createDepartment, deleteDepartment, updateDepartment } from '../../../state';
+import { notification } from '../../../services';
 
 class DepartmentPage extends Component {
 
 	onCreateDepartment(data) {
 		this.props.storeActions.createDepartment(data).then(() => {
 			this.props.resetCreateDepartmentForm();
+			notification.showSuccess(DEPARTMENT_CREATE_SUCCEEDED_MSG);
+		}).catch(() => {
+			notification.showError(DEPARTMENT_CREATE_FAILED_MSG);
 		});
 	}
 
 	onUpdateDepartment(data) {
-		this.props.storeActions.updateDepartment(data);
+		this.props.storeActions.updateDepartment(data).then(() => {
+			notification.showSuccess(DEPARTMENT_UPDATE_SUCCEEDED_MSG);
+		}).catch(() => {
+			notification.showError(DEPARTMENT_UPDATE_FAILED_MSG);
+		});
 	}
 
 	onDeleteDepartment(data) {
 		this.props.storeActions.deleteDepartment(data).then(() => {
 			this.props.goToDefault();
+			notification.showSuccess(DEPARTMENT_DELETE_SUCCEEDED_MSG);
+		}).catch(() => {
+			notification.showError(DEPARTMENT_DELETE_FAILED_MSG);
 		});
 	}
 
