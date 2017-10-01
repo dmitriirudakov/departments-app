@@ -1,14 +1,8 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react';
 
-export class HomePage extends Component {
-	render() {
-		return (
-			<div>
-				<h1 className="text-center"> Welcome to App! </h1>
-			</div>
-		)
-	}
-}
+const HomePage = () =>
+	<div>
+		<h1 className="text-center"> Welcome to App! </h1>
+	</div>
 
-export default connect()(HomePage)
+export default HomePage;
