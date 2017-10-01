@@ -75,8 +75,8 @@ class EmployeePage extends Component {
 
 		return (
 			<div>
-				{ !employeeId && !!departments && <CreateEmployeeForm {...createFormProps} /> }
-				{ !!employee && !!departments && <EditEmployeeForm {...editFormProps} /> }
+				{ isCreate && !!departments && <CreateEmployeeForm {...createFormProps} /> }
+				{ isEdit && !!departments && <EditEmployeeForm {...editFormProps} /> }
 				{ loading && <AppLoader stretch={true}></AppLoader> }
 			</div>
 		)
