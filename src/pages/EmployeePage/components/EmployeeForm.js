@@ -16,7 +16,7 @@ const EmployeeForm = props => {
 				<div className="form-group">
 					<label className="pull-left" htmlFor="first-name">First Name*:</label>
 					<Field className="form-control" disabled={loading} required 
-						pattern="[A-Za-z0-9]{1,}" maxLength="30" id="first-name" 
+						pattern="[A-Za-z0-9]{1,}([A-Za-z0-9 ])*" maxLength="30" id="first-name" 
 						title="Field accepts at least 1 letter and can't begin with space"
 						name={EMPLOYEE_FORM_FIELDS.FIRST_NAME} component="input" type="text" 
 						autoComplete="off"/>
@@ -24,7 +24,7 @@ const EmployeeForm = props => {
 				<div className="form-group">
 					<label className="pull-left" htmlFor="last-name">Last Name*:</label>
 					<Field className="form-control" disabled={loading} required 
-						pattern="[A-Za-z0-9]{1,}" maxLength="30" id="last-name" 
+						pattern="[A-Za-z0-9]{1,}([A-Za-z0-9 ])*" maxLength="30" id="last-name" 
 						title="Field accepts at least 1 letter and can't begin with space"
 						name={EMPLOYEE_FORM_FIELDS.LAST_NAME} component="input" type="text" 
 						autoComplete="off"/>

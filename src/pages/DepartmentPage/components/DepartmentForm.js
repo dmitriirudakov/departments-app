@@ -16,7 +16,7 @@ const DepartmentForm = props => {
 					<div className="input-group">
 						<label className="pull-left" htmlFor="department-name">Department Name*:</label>
 						<Field className="form-control" required disabled={loading} 
-							maxLength="30" pattern="[A-Za-z0-9]{1,}" id="department-name"
+							maxLength="30" pattern="[A-Za-z0-9]{1,}([A-Za-z0-9 ])*" id="department-name"
 							title="Field accepts at least 1 letter and can't begin with space"
 							name={DEPARTMENT_FORM_FIELDS.NAME} component="input" type="text" 
 							autoComplete="off"/>
